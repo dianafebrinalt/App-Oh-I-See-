@@ -64,7 +64,5 @@
 	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>For get photo</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>For show the speech</string>
 </dict>
 </plist>

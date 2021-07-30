@@ -170,7 +170,7 @@ class ImageToSpeechViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func playTheSpeech(_ sender: Any) {
         if !speechTheSynthesizer.isSpeaking {
-            let textParagraphs = tvExtractTextFromImage.text.components(separatedBy: "\n")
+            let textParagraphs = tvExtractTextFromImage.text.components(separatedBy: "")
             
             totalUtterancesOfText = textParagraphs.count
             currentUtteranceOfText = 0
@@ -362,7 +362,7 @@ extension ImageToSpeechViewController: AVSpeechSynthesizerDelegate{
         
         attributedStrings.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemOrange, range: NSMakeRange(0, attributedStrings.length))
         
-        attributedStrings.addAttribute(NSAttributedString.Key.font, value: fontAttributes!, range: NSMakeRange(0, attributedStrings.string.count))
+        attributedStrings.addAttribute(NSAttributedString.Key.font, value: fontAttributes!, range: NSMakeRange(0, attributedStrings.string.utf16.count))
         
         tvExtractTextFromImage.scrollRangeToVisible(rangeInTotalTexts)
         

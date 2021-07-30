@@ -44,7 +44,7 @@ class TextToSpeechViewController: UIViewController, UITextViewDelegate {
     let speechSynthesizer = AVSpeechSynthesizer()
     
     
-    var voiceAccentBasedOnLanguage = ["Saudi Arabia", "Chinese", "Hongkong", "Taiwan", "Denmark", "Belgium", "Netherlands", "Australia", "Ireland", "South Africa", "England", "America", "Finland", "Canada", "France", "Germany", "Greece", "Israel", "India", "Hungary", "Indonesia", "Italy", "Japan", "South Korea", "Norwegia", "Poland", "Brazil", "Portugal", "Romania", "Russia", "Slovakia", "Mexico", "Spain", "Sweden", "Thailand", "Turkey"]
+    var voiceAccentBasedOnLanguage = ["Saudi Arabia", "Chinese", "Hongkong", "Taiwan", "Denmark", "Belgium", "Netherlands", "Australia", "Ireland", "South Africa", "England(UK)", "America(US)", "Finland", "Canada", "France", "Germany", "Greece", "Israel", "India", "Hungary", "Indonesia", "Italy", "Japan", "South Korea", "Norwegia", "Poland", "Brazil", "Portugal", "Romania", "Russia", "Slovakia", "Mexico", "Spain", "Sweden", "Thailand", "Turkey"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,7 +111,7 @@ class TextToSpeechViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func playTextToSpeech(_ sender: UIButton) {
         if !speechSynthesizer.isSpeaking {
-            let textParagraphs = setTextInput.text.components(separatedBy: "\n")
+            let textParagraphs = setTextInput.text.components(separatedBy: "")
             
             totalUtterances = textParagraphs.count
             currentUtterance = 0
@@ -151,10 +151,10 @@ class TextToSpeechViewController: UIViewController, UITextViewDelegate {
                 else if accentThatUserChoose == "South Africa"{
                     lang = "en-ZA"
                 }
-                else if accentThatUserChoose == "England"{
+                else if accentThatUserChoose == "England(UK)"{
                     lang = "en-GB"
                 }
-                else if accentThatUserChoose == "America"{
+                else if accentThatUserChoose == "America(US)"{
                     lang = "en-US"
                 }
                 else if accentThatUserChoose == "Finland"{
@@ -302,7 +302,7 @@ extension TextToSpeechViewController: AVSpeechSynthesizerDelegate{
         
         attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.systemOrange, range: NSMakeRange(0, attributedString.length))
         
-        attributedString.addAttribute(NSAttributedString.Key.font, value: fontAttribute!, range: NSMakeRange(0, attributedString.string.count))
+        attributedString.addAttribute(NSAttributedString.Key.font, value: fontAttribute!, range: NSMakeRange(0, attributedString.string.utf16.count))
         
         setTextInput.scrollRangeToVisible(rangeInTotalText)
         
